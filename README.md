@@ -2,6 +2,8 @@
 
     Detect SRY kmers from male and female population data.
 
+    notice : this project is still with developing & debugging period!!!
+
 # Usage
 
 ```
