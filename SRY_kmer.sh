@@ -17,6 +17,7 @@ Option  :
     --female_group  required    folder of female population.
                                 NOTICE : for each individual, put it's fastq into a independant sub-folder.
                                 NOITCE : fastq must be ended by "fastq" or "fastq.gz" or "fq" or "fq.gz".
+    --suffix        required    suffix of sequence files.
     --kmers         optional    [default 21] kmer-size.
     --thread        optional    [default 16] max threads for meryl.
     --memory        optional    [default 50] max memory for meryl. 
@@ -40,6 +41,7 @@ Male_folder='./'
 Female_folder='./'
 CPU=16
 MEMPORY=100
+SUFFIX=''
 
 ROOT_PATH=`dirname $0`
 ROOT_PATH=`realpath $ROOT_PATH`
@@ -79,6 +81,10 @@ do
             Male_folder=$2
             shift
             ;;
+        "--suffix")
+            SUFFIX=$2
+            shift
+            ;;
         "--kmer")
             KMER=$2
             shift
@@ -102,16 +108,23 @@ done
 Male_folder=`realpath $Male_folder`
 Female_folder=`realpath $Female_folder`
 
+# santity check
+if [[ ! -d $Female_folder  || ! -d $Male_folder || -z $SUFFIX ]] ; then 
+    echo "invalid parameters ... exit ... "
+    usage
+    exit 1
+fi
+
 mkdir -p $OUTPUT
 mkdir -p logs
 cd $OUTPUT
 
 echo """
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-CMD                 $0 $*
 INSTALLED PATH      $ROOT_PATH
 MALE GROUP PATH     $Male_folder
 FEMALE GROUP PATH   $Female_folder
+SUFFIX              $SUFFIX
 MEMPORY             $MEMPORY Gb
 THREAD              $CPU
 OUTPUT              $OUTPUT
@@ -131,6 +144,7 @@ if [[ ! -e 'step01.meryl-count-male.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group_folder $Male_folder \\
+        --suffix $SUFFIX \\
         1> ../logs/step01.meryl-count-male.log \\
         2> ../logs/step01.meryl-count-male.err || exit 1
     cd ../
@@ -139,6 +153,7 @@ if [[ ! -e 'step01.meryl-count-male.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \
         --memory $MEMPORY \
         --group_folder $Male_folder \
+        --suffix $SUFFIX \
         1> ../logs/step01.meryl-count-male.log \
         2> ../logs/step01.meryl-count-male.err || exit 1
     cd ../
@@ -156,6 +171,7 @@ if [[ ! -e 'step01.meryl-count-female.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group $Female_folder \\
+        --suffix $SUFFIX \\
         1> ../logs/step01.meryl-count-female.log \\
         2> ../logs/step01.meryl-count-female.err || exit 1
     cd ../
@@ -164,7 +180,8 @@ if [[ ! -e 'step01.meryl-count-female.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \
         --memory $MEMPORY \
         --group $Female_folder \
-        1> ../logs/step01.meryl-count-female.log \\
+        --suffix $SUFFIX \
+        1> ../logs/step01.meryl-count-female.log \
         2> ../logs/step01.meryl-count-female.err || exit 1
     cd ../
     echo 'done step01.meryl-count-female'
