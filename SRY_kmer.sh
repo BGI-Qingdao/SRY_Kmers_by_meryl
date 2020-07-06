@@ -117,8 +117,8 @@ if [[ ! -d $Female_folder  || ! -d $Male_folder || -z $SUFFIX ]] ; then
 fi
 
 mkdir -p $OUTPUT
-mkdir -p logs
 cd $OUTPUT
+mkdir -p logs
 
 echo """
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

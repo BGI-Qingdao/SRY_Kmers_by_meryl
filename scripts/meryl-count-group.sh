@@ -85,7 +85,7 @@ do
             ;;
         *)
             echo "invalid params : \"$1\" . exit ... "
-            exit
+            exit 1
         ;;
     esac
     shift
