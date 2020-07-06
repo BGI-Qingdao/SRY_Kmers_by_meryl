@@ -144,7 +144,7 @@ if [[ ! -e 'step01.meryl-count-male.done' || $FORCE == 'yes' ]] ; then
     mkdir -p male && cd male 
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \\
         --memory $MEMPORY \\
-        --group_folder $Male_folder \\
+        --group $Male_folder \\
         --suffix $SUFFIX \\
         1> ../logs/step01.meryl-count-male.log \\
         2> ../logs/step01.meryl-count-male.err || exit 1
@@ -153,7 +153,7 @@ if [[ ! -e 'step01.meryl-count-male.done' || $FORCE == 'yes' ]] ; then
     mkdir -p male && cd male 
     $SCRIPT_PATH/meryl-count-group.sh --thread $CPU \
         --memory $MEMPORY \
-        --group_folder $Male_folder \
+        --group $Male_folder \
         --suffix $SUFFIX \
         1> ../logs/step01.meryl-count-male.log \
         2> ../logs/step01.meryl-count-male.err || exit 1
@@ -199,6 +199,7 @@ if [[ ! -e 'step02.male-hapmer-union.done' || $FORCE == 'yes' ]] ; then
     echo '######'
     echo 'start step02.male-hapmer-union'
     echo """
+    cd male
     $SCRIPT_PATH/meryl-hapmer-group.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group ./ \\
@@ -206,11 +207,12 @@ if [[ ! -e 'step02.male-hapmer-union.done' || $FORCE == 'yes' ]] ; then
         2 > ../logs/step02.male-hapmer-group.err || exit 1
     cd ../
     """
+    cd male
     $SCRIPT_PATH/meryl-hapmer-group.sh --thread $CPU \
         --memory $MEMPORY \
         --group ./        \
-        1 > ../logs/step02.male-hapmer-group.log \
-        2 > ../logs/step02.male-hapmer-group.err || exit 1
+        1> ../logs/step02.male-hapmer-group.log \
+        2> ../logs/step02.male-hapmer-group.err || exit 1
     cd ../
 
     echo """
@@ -218,16 +220,16 @@ if [[ ! -e 'step02.male-hapmer-union.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-hapmer-union.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group ../male \\
-        1 > ../logs/step02.male-hapmer-union.log \\
-        2 > ../logs/step02.male-hapmer-union.err || exit 1
+        1> ../logs/step02.male-hapmer-union.log \\
+        2> ../logs/step02.male-hapmer-union.err || exit 1
     cd ../
     """
     mkdir -p male_hapmer_union && cd male_hapmer_union
     $SCRIPT_PATH/meryl-hapmer-union.sh --thread $CPU \
         --memory $MEMPORY \
         --group ../male   \
-        1 > ../logs/step02.male-hapmer-union.log \
-        2 > ../logs/step02.male-hapmer-union.err || exit 1
+        1> ../logs/step02.male-hapmer-union.log \
+        2> ../logs/step02.male-hapmer-union.err || exit 1
     cd ../
 
     echo 'done step02.male-hapmer-union'
@@ -248,16 +250,16 @@ if [[ ! -e 'step03.female-main-union.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-main-group.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group ./  \\
-        1 > ../logs/step03.meryl-main-group.log \\
-        2 > ../logs/step03.meryl-main-group.err || exit 1
+        1> ../logs/step03.meryl-main-group.log \\
+        2> ../logs/step03.meryl-main-group.err || exit 1
     cd ../
     """
     cd female
     $SCRIPT_PATH/meryl-main-group.sh --thread $CPU \
         --memory $MEMPORY \
         --group ./        \
-        1 > ../logs/step03.meryl-main-group.log \
-        2 > ../logs/step03.meryl-main-group.err || exit 1
+        1> ../logs/step03.meryl-main-group.log \
+        2> ../logs/step03.meryl-main-group.err || exit 1
     cd ../
 
     echo """
@@ -265,16 +267,16 @@ if [[ ! -e 'step03.female-main-union.done' || $FORCE == 'yes' ]] ; then
     $SCRIPT_PATH/meryl-main-union.sh --thread $CPU \\
         --memory $MEMPORY \\
         --group ../female \\
-        1 > ../logs/step03.meryl-main-union.log \
-        2 > ../logs/step03.meryl-main-union.err || exit 1
+        1> ../logs/step03.meryl-main-union.log \
+        2> ../logs/step03.meryl-main-union.err || exit 1
     cd ../
     """
     mkdir -p female_main_union && cd female_main_union
     $SCRIPT_PATH/meryl-main-union.sh --thread $CPU \
         --memory $MEMPORY \
         --group ../female \
-        1 > ../logs/step03.meryl-main-union.log \
-        2 > ../logs/step03.meryl-main-union.err || exit 1
+        1> ../logs/step03.meryl-main-union.log \
+        2> ../logs/step03.meryl-main-union.err || exit 1
     cd ../
     echo 'done step03.female-main-union'
     date >>'step03.female-main-union.done'
