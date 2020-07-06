@@ -24,7 +24,9 @@ Option  :
 
 Example :
 
-    ./SRY_kmers.sh --male_group  xxx --female_group yyy --output ouput
+    ./SRY_kmers.sh --male_group  xxx --female_group yyy \
+                   --output ouput --suffix fasta.gz
+
 
 Author  :
     xumengyang@genomics.cn
