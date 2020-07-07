@@ -110,15 +110,15 @@ if [[ ! -e link.female.meryl ]] ; then
     if [[ $MIN_FEMALE_SUPPORT -gt 0 ]] ; then 
         MIN=$((MIN_FEMALE_SUPPORT-1))
         echo """
-        meryl greater-than $MIN output temp_female.gt$MIN.meryl $FEMALE
+        meryl greater-than $MIN output temp_female.gt$MIN.meryl $FEMALE || exit 1
         ln -s temp_female.gt$MIN.meryl link.female.meryl
         """
-        meryl greater-than $MIN output temp_female.gt$MIN.meryl $FEMALE
+        meryl greater-than $MIN output temp_female.gt$MIN.meryl $FEMALE || exit 1
         ln -s temp_female.gt$MIN.meryl link.female.meryl
     else
         echo """
         ln -s $FEMALE link.female.meryl
-        ""
+        """
         ln -s $FEMALE link.female.meryl
     fi
 else
@@ -127,9 +127,9 @@ fi
 
 if [[ ! -e SRY_Kmers.meryl ]] ; then
     echo """
-    meryl difference output sry_kmers.meryl $MALE link.female.meryl
+    meryl difference output sry_kmers.meryl $MALE link.female.meryl || exit 1
     """
-    meryl difference output sry_kmers.meryl $MALE link.female.meryl
+    meryl difference output sry_kmers.meryl $MALE link.female.meryl || exit 1
 else
     echo "use exist SRY_Kmers.meryl "
 fi

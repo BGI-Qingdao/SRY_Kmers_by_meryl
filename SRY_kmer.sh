@@ -293,19 +293,19 @@ if [[ ! -e 'step04.sry-kmers.done' || $FORCE == 'yes' ]] ; then
     echo 'start step04.sry-kmers'
     echo """
     mkdir -p sry-kmers && cd sry-kmers
-    $SCRIPT_PATH/sry-kmers.sh --thread $CPU \\
+    $SCRIPT_PATH/meryl-sry-kmers.sh --thread $CPU \\
         --memory $MEMPORY \\
-        --male_hapmer ../male_hapmer_union \\
-        --female_main ../female_main_union \\
+        --male ../male_hapmer_union/hapmer_union.meryl \\
+        --female ../female_main_union/main_union.meryl \\
         1> ../logs/step04.sry-kmers.log \\
         2> ../logs/step04.sry-kmers.err ||exit 1
     cd ../
     """
     mkdir -p sry-kmers && cd sry-kmers
-    $SCRIPT_PATH/merl-sry-kmers.sh --thread $CPU \
+    $SCRIPT_PATH/meryl-sry-kmers.sh --thread $CPU \
         --memory $MEMPORY \
-        --male_hapmer ../male_hapmer_union \
-        --female_main ../female_main_union \
+        --male ../male_hapmer_union/hapmer_union.meryl \
+        --female ../female_main_union/main_union.meryl \
         1> ../logs/step04.sry-kmers.log \
         2> ../logs/step04.sry-kmers.err ||exit 1
     cd ../
