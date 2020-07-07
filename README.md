@@ -41,7 +41,7 @@ Author  :
 ## How to get the distrubution of the numbers of SRY-kmers in assembly result ?
 
 ```
-./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -existence -threads 30 -output info.txt 
+./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -existence -threads 30 >info.txt 
 ```
 
 ## How to get the existence details of SRY-kmers in assembly result ?
