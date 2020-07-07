@@ -22,6 +22,8 @@ Option  :
     --thread        optional    [default 16] max threads for meryl.
     --memory        optional    [default 50] max memory for meryl. 
     --output        optional    [default output] output folder name.
+    --mfs           optional    [default 0] the minimum number of individual that support femle kmers .
+                                set this in case when you suspect that there are mixed males in the females.
 
 Example :
 
@@ -50,6 +52,7 @@ ROOT_PATH=`realpath $ROOT_PATH`
 SCRIPT_PATH=$ROOT_PATH"/scripts"
 OUTPUT='output'
 FORCE='no'
+MIN_FEMALE_SUPPORT=0
 #################################################
 # STEP 0 : parse arguments
 #################################################
@@ -69,6 +72,10 @@ do
         "--help")
             usage
             exit 0
+            ;;
+        "--mfs")
+            MIN_FEMALE_SUPPORT=$2
+            shift
             ;;
         "--memory")
             MEMORY=$2
@@ -297,6 +304,7 @@ if [[ ! -e 'step04.sry-kmers.done' || $FORCE == 'yes' ]] ; then
         --memory $MEMPORY \\
         --male ../male_hapmer_union/hapmer_union.meryl \\
         --female ../female_main_union/main_union.meryl \\
+        --min_female_support $MIN_FEMALE_SUPPORT \\
         1> ../logs/step04.sry-kmers.log \\
         2> ../logs/step04.sry-kmers.err ||exit 1
     cd ../
@@ -306,6 +314,7 @@ if [[ ! -e 'step04.sry-kmers.done' || $FORCE == 'yes' ]] ; then
         --memory $MEMPORY \
         --male ../male_hapmer_union/hapmer_union.meryl \
         --female ../female_main_union/main_union.meryl \
+        --min_female_support $MIN_FEMALE_SUPPORT \
         1> ../logs/step04.sry-kmers.log \
         2> ../logs/step04.sry-kmers.err ||exit 1
     cd ../
