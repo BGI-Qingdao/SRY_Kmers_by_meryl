@@ -46,7 +46,11 @@ Author  :
 # find the first lowest count x and 
 #  assume the lower-multiplicity kmer are sequencing error or rare hapoloty kmer 
 #  so that we need to filter them
-./bin/meryl greater-than x output sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
+./bin/meryl greater-than x output sry-kmers/sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
+
+## rename folders
+mv sry-kmers/sry-kmers.meryl sry-kmers/sry-kmers.all.meryl
+ln -s sry-kmers/sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
 ```
 
 **if your hostgram is abnormal, may be you can increase the --mfs to avoid misclassified male individuals in females.**
