@@ -39,7 +39,7 @@ Author  :
 # Q & A 
 
 ## How to do quality control of sry-kmer ?
-
+![image](https://github.com/BGI-Qingdao/SRY_Kmers_by_meryl/blob/master/sry-kmers-hist.png)
 ```
 # print hostgram first. the kmer-multiplicity refer to the number of suppert male individual .
 ./bin/meryl histogram sry-kmers/sry-kmers.meryl 
