@@ -38,6 +38,12 @@ Author  :
 
 # Q & A 
 
+## How to get sry-kmer in text file
+
+```
+./bin/meryl print sry-kmers/sry-kmers.meryl | awk '{print $1}' >sry.kmer.txt
+```
+
 ## How to get the distrubution of the numbers of SRY-kmers in assembly result ?
 
 ```
