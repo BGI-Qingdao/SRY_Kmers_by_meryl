@@ -73,5 +73,5 @@ ln -s sry-kmers/sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
 
 ```
 # below command will print the "seqName <tab> kmer-startPos <tab> kmer-from-SRY"
-./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -dump -threads 30 2>log | awk '{if($4=='T')printf("%s\t%s\t%s\n",$1,$3,$5);}'
+./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -dump -threads 30 2>log | awk '{if($4=="T" )printf("%s\t%s\t%s\n",$1,$3,$5);}'
 ```
