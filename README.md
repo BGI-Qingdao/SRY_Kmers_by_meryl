@@ -38,7 +38,22 @@ Author  :
 
 # Q & A 
 
-## How to get sry-kmer in text file
+## How to do quality control of sry-kmer ?
+
+```
+# print hostgram first. the kmer-multiplicity refer to the number of suppert male individual .
+./bin/meryl histogram sry-kmers/sry-kmers.meryl 
+# find the first lowest count x and 
+#  assume the lower-multiplicity kmer are sequencing error or rare hapoloty kmer 
+#  so that we need to filter them
+./bin/meryl greater-than x output sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
+```
+
+**if your hostgram is abnormal, may be you can increase the --mfs to avoid misclassified male individuals in females.**
+
+
+
+## How to get sry-kmer in text file ?
 
 ```
 ./bin/meryl print sry-kmers/sry-kmers.meryl | awk '{print $1}' >sry.kmer.txt
