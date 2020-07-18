@@ -118,9 +118,9 @@ do
     echo "interval for $x is ( $MIN , $MAX ) "
     if [[ ! -e $x.'_gt'$MIN'.meryl' ]] ; then 
         echo """
-        meryl greater-than $MIN  $x'.meryl' output $x'_gt'$MIN'.meryl'
+        meryl greater-than $MIN  $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
         """
-        meryl greater-than $MIN  $x'.meryl' output $x'_gt'$MIN'.meryl'
+        meryl greater-than $MIN  $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
     else
         echo " use exist $x'_gt'$MIN'.meryl'"
     fi
