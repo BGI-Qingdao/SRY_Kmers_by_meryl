@@ -38,40 +38,40 @@ Author  :
 
 # Q & A 
 
-## How to do quality control of sry-kmer ?
+## How to do quality control of msk ?
 ![image](https://github.com/BGI-Qingdao/SRY_Kmers_by_meryl/blob/master/sry-kmers-hist.png)
 ```
 # print hostgram first. the kmer-multiplicity refer to the number of suppert male individual .
-./bin/meryl histogram sry-kmers/sry-kmers.meryl 
+./bin/meryl histogram msk/msk.meryl 
 # find the first lowest count x and 
 #  assume the lower-multiplicity kmer are sequencing error or rare hapoloty kmer 
 #  so that we need to filter them
-./bin/meryl greater-than x output sry-kmers/sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
+./bin/meryl greater-than x output msk/msk.gtx.meryl msk/msk.meryl
 
 ## rename folders
-mv sry-kmers/sry-kmers.meryl sry-kmers/sry-kmers.all.meryl
-ln -s sry-kmers/sry-kmers.gtx.meryl sry-kmers/sry-kmers.meryl
+mv msk/msk.meryl msk/msk.all.meryl
+ln -s msk/msk.gtx.meryl msk/msk.meryl
 ```
 
 **if your hostgram is abnormal, may be you can increase the --mfs to avoid misclassified male individuals in females.**
 
 
 
-## How to get sry-kmer in text file ?
+## How to get msk in text file ?
 
 ```
-./bin/meryl print sry-kmers/sry-kmers.meryl 2>log | awk '{print $1}' >sry.kmer.txt
+./bin/meryl print msk/msk.meryl 2>log | awk '{print $1}' >msk.txt
 ```
 
 ## How to get the distrubution of the numbers of SRY-kmers in assembly result ?
 
 ```
-./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -existence -threads 30 >info.txt 
+./bin/meryl-lookup -sequence genome.fasta -mers msk/msk.meryl -existence -threads 30 >info.txt 
 ```
 
 ## How to get the existence details of SRY-kmers in assembly result ?
 
 ```
 # below command will print the "seqName <tab> kmer-startPos <tab> kmer-from-SRY"
-./bin/meryl-lookup -sequence genome.fasta -mers sry-kmers/sry-kmers.meryl -dump -threads 30 2>log | awk '{if($4=="T" )printf("%s\t%s\t%s\n",$1,$3,$5);}'
+./bin/meryl-lookup -sequence genome.fasta -mers msk/msk.meryl -dump -threads 30 2>log | awk '{if($4=="T" )printf("%s\t%s\t%s\n",$1,$3,$5);}'
 ```

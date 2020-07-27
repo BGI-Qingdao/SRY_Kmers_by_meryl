@@ -6,9 +6,9 @@
 function usage() {
 echo """
 Brief       :
-    get sry-kmers from male_hapmer and female_main
+    get male-special-kmers(msk) from male_hapmer and female_main
 Usage       :
-    sry-kmers.sh [options]
+    meryl-msk.sh [options]
 
 Options     :
         -h/--help               print this usage and exit.
@@ -23,12 +23,12 @@ Options     :
                                           in the females.
 
 Example     :
-    meryl-main-group.sh --male  male.meryl --female female.meryl
+    meryl-msk.sh --male  male.meryl --female female.meryl
 
-    meryl-main-group.sh --male  male.meryl --female female.meryl  \\
+    meryl-msk.sh --male  male.meryl --female female.meryl  \\
                         --thread 30 --memory 20
 
-    meryl-main-group.sh --male  male.meryl --female female.meryl
+    meryl-msk.sh --male  male.meryl --female female.meryl
                         --thread 30 --memory 20 --min_female_support 3
 """
 }
@@ -127,10 +127,10 @@ fi
 
 if [[ ! -e SRY_Kmers.meryl ]] ; then
     echo """
-    meryl difference output sry_kmers.meryl $MALE link.female.meryl || exit 1
+    meryl difference output msk.meryl $MALE link.female.meryl || exit 1
     """
-    meryl difference output sry_kmers.meryl $MALE link.female.meryl || exit 1
+    meryl difference output msk.meryl $MALE link.female.meryl || exit 1
 else
-    echo "use exist SRY_Kmers.meryl "
+    echo "use exist msk.meryl "
 fi
 echo "Done"

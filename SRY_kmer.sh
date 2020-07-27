@@ -295,31 +295,31 @@ fi
 # STEP 4 : Get SRY-kmers
 #################################################
 
-if [[ ! -e 'step04.sry-kmers.done' || $FORCE == 'yes' ]] ; then
+if [[ ! -e 'step04.msk.done' || $FORCE == 'yes' ]] ; then
     echo '######'
-    echo 'start step04.sry-kmers'
+    echo 'start step04.msk'
     echo """
-    mkdir -p sry-kmers && cd sry-kmers
-    $SCRIPT_PATH/meryl-sry-kmers.sh --thread $CPU \\
+    mkdir -p msk && cd msk
+    $SCRIPT_PATH/meryl-msk.sh --thread $CPU \\
         --memory $MEMPORY \\
         --male ../male_hapmer_union/hapmer_union.meryl \\
         --female ../female_main_union/main_union.meryl \\
         --min_female_support $MIN_FEMALE_SUPPORT \\
-        1> ../logs/step04.sry-kmers.log \\
-        2> ../logs/step04.sry-kmers.err ||exit 1
+        1> ../logs/step04.msk.log \\
+        2> ../logs/step04.msk.err ||exit 1
     cd ../
     """
-    mkdir -p sry-kmers && cd sry-kmers
-    $SCRIPT_PATH/meryl-sry-kmers.sh --thread $CPU \
+    mkdir -p msk && cd msk
+    $SCRIPT_PATH/meryl-msk.sh --thread $CPU \
         --memory $MEMPORY \
         --male ../male_hapmer_union/hapmer_union.meryl \
         --female ../female_main_union/main_union.meryl \
         --min_female_support $MIN_FEMALE_SUPPORT \
-        1> ../logs/step04.sry-kmers.log \
-        2> ../logs/step04.sry-kmers.err ||exit 1
+        1> ../logs/step04.msk.log \
+        2> ../logs/step04.msk.err ||exit 1
     cd ../
-    echo 'done step04.sry-kmers'
-    date >>'step04.sry-kmers.done'
+    echo 'done step04.msk'
+    date >>'step04.msk.done'
 else
-    echo "skip sry-kmers due to step04.sry-kmers.done exist ..."
+    echo "skip msk due to step04.msk.done exist ..."
 fi
