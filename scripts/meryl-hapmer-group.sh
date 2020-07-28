@@ -103,10 +103,10 @@ do
 
     if [[ ! -e bounds.txt ]] ; then
         echo """
-        meryl histogram $Group/$x/$x'.meryl' >$x'.hist'
+        meryl histogram  threads=$CPU memory=$MEMORY  $Group/$x/$x'.meryl' >$x'.hist'
         awk -f $ROOT_PATH/get_bd.awk $x'.hist' >bounds.txt
         """
-        meryl histogram $Group/$x/$x'.meryl' >$x'.hist'
+        meryl histogram  threads=$CPU memory=$MEMORY $Group/$x/$x'.meryl' >$x'.hist'
         awk -f $ROOT_PATH/get_bd.awk $x'.hist' >bounds.txt
     else
         echo " use old bounds.txt."
@@ -118,18 +118,18 @@ do
     echo "interval for $x is ( $MIN , $MAX ) "
     if [[ ! -e $x.'_gt'$MIN'.meryl' ]] ; then 
         echo """
-        meryl greater-than $MIN  $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
+        meryl greater-than $MIN  threads=$CPU memory=$MEMORY $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
         """
-        meryl greater-than $MIN  $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
+        meryl greater-than $MIN  threads=$CPU memory=$MEMORY $Group/$x/$x'.meryl' output $x'_gt'$MIN'.meryl'
     else
         echo " use exist $x'_gt'$MIN'.meryl'"
     fi
 
     if [[ ! -e $x'_gt'$MIN'_lt'$MAX'.meryl' ]] ; then 
         echo """
-        meryl less-than $MAX  $x'_gt'$MIN'.meryl' output $x'_gt'$MIN'_lt'$MAX'.meryl'
+        meryl less-than $MAX threads=$CPU memory=$MEMORY $x'_gt'$MIN'.meryl' output $x'_gt'$MIN'_lt'$MAX'.meryl'
         """
-        meryl less-than $MAX  $x'_gt'$MIN'.meryl' output $x'_gt'$MIN'_lt'$MAX'.meryl'
+        meryl less-than $MAX threads=$CPU memory=$MEMORY $x'_gt'$MIN'.meryl' output $x'_gt'$MIN'_lt'$MAX'.meryl'
     else
         echo " use exist $x'_gt'$MIN'_lt'$MAX'.meryl'"
     fi

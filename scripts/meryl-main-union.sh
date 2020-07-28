@@ -99,9 +99,9 @@ do
     if [[ $id -eq 10 ]] ; then 
         batch=$((batch+1))
         echo """
-        meryl union output main_union_batch_$batch.meryl $libs
+        meryl union threads=$CPU memory=$MEMORY  output   main_union_batch_$batch.meryl $libs
         """
-        meryl union output main_union_batch_$batch.meryl $libs
+        meryl union threads=$CPU memory=$MEMORY output   main_union_batch_$batch.meryl $libs
 
         libs=''
         id=0
@@ -111,14 +111,14 @@ done
 if [[ $id -gt 0 ]] ; then
     batch=$((batch+1))
     echo """
-    meryl union output main_union_batch_$batch.meryl $libs
+    meryl union threads=$CPU memory=$MEMORY  output   main_union_batch_$batch.meryl $libs
     """
-    meryl union output main_union_batch_$batch.meryl $libs
+    meryl union threads=$CPU memory=$MEMORY  output  main_union_batch_$batch.meryl $libs
 fi
 
 echo """
-meryl union-sum output main_union.meryl main_union_batch_*.meryl
+meryl union-sum  threads=$CPU memory=$MEMORY output main_union.meryl main_union_batch_*.meryl
 """
-meryl union-sum output main_union.meryl main_union_batch_*.meryl
+meryl union-sum  threads=$CPU memory=$MEMORY output main_union.meryl main_union_batch_*.meryl
 
 echo "Done"
