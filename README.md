@@ -1,8 +1,8 @@
 # Introduction
 
-    Detect SSK( sex special kmers) from male and female population data.
+    Detect SSK( sex-specific-kmers) from male and female population data.
 
-    notice : this project is still with developing & debugging stage!!!
+    note : this project is still under developing & debugging !!!
 
 # Usage
 
@@ -12,17 +12,17 @@ Usage   :
 
 Option  :
     --male_group    required    folder of male population.
-                                NOTICE : for each individual, put it's fastq into a independant sub-folder.
-                                NOITCE : fastq must be ended by fastq or fastq.gz or fq or fq.gz
+                                NOTE : for each individual, put all of its fastqs into a separate sub-folder.
+                                NOTE : fastq must be ended by fastq or fastq.gz or fq or fq.gz
     --female_group  required    folder of female population.
-                                NOTICE : for each individual, put it's fastq into a independant sub-folder.
-                                NOITCE : fastq must be ended by fastq or fastq.gz or fq or fq.gz.
+                                NOTE : for each individual, put all of its fastqs into a separate sub-folder.
+                                NOTE : fastq must be ended by fastq or fastq.gz or fq or fq.gz.
     --suffix        required    suffix of sequence files.
     --kmers         optional    [default 21] kmer-size.
     --thread        optional    [default 16] max threads for meryl.
     --memory        optional    [default 50] max memory for meryl.
     --output        optional    [default output] output folder name.
-    --mfs           optional    [default 0] the minimum number of individual that support femle kmers .
+    --mfs           optional    [default 0] the minimum number of individuals that support female kmers .
                                 set this in case when you suspect that there are mixed males in the females.
 
 Example :
@@ -57,19 +57,19 @@ ln -s msk/msk.gtx.meryl msk/msk.meryl
 
 
 
-## How to get msk in text file ?
+## How to get SSK kmers ?
 
 ```
 ./bin/meryl print msk/msk.meryl 2>log | awk '{print $1}' >msk.txt
 ```
 
-## How to get the distrubution of the numbers of SSK in assembly result ?
+## How to get the mapping statistics of SSK against the assembly result ?
 
 ```
 ./bin/meryl-lookup -sequence genome.fasta -mers msk/msk.meryl -existence -threads 30 >info.txt 
 ```
 
-## How to get the existence details of SSK in assembly result ?
+## How to get the mapping positions of SSK against the assembly result ?
 
 ```
 # below command will print the "seqName <tab> kmer-startPos <tab> kmer-from-SSK"
