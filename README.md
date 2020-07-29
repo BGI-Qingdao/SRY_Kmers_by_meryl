@@ -53,7 +53,7 @@ mv msk/msk.meryl msk/msk.all.meryl
 ln -s msk/msk.gtx.meryl msk/msk.meryl
 ```
 
-**if your hostgram is abnormal, may be you can increase the --mfs to avoid misclassified male individuals in females.**
+**if your histogram is abnormal, maybe you can increase the --mfs to avoid misclassified male individuals in females.**
 
 
 
