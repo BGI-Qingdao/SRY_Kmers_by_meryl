@@ -39,7 +39,7 @@ Author  :
 # Q & A 
 
 ## How to do quality control of msk ?
-![image](https://github.com/BGI-Qingdao/SSK_by_meryl/blob/master/sry-kmers-hist.png)
+![image](https://github.com/BGI-Qingdao/SSK_finder/blob/master/sry-kmers-hist.png)
 ```
 # print hostgram first. the kmer-multiplicity refer to the number of suppert male individual .
 ./bin/meryl histogram msk/msk.meryl 
