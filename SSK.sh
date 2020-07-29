@@ -5,10 +5,10 @@
 function usage(){
 echo """
 Brief   :
-    detect SRY kmers from male and female population data.
+detect SSK (sex special kmers) from male and female population data.
 
 Usage   :
-    ./SRY_kmers.sh [options]
+    ./SSY.sh [options]
 
 Option  :
     --male_group    required    folder of male population.
@@ -27,7 +27,7 @@ Option  :
 
 Example :
 
-    ./SRY_kmers.sh --male_group  xxx --female_group yyy \\
+    ./SSK.sh --male_group  xxx --female_group yyy \\
                    --output ouput --suffix fasta.gz
 
 Author  :
@@ -292,7 +292,7 @@ else
 fi
 
 #################################################
-# STEP 4 : Get SRY-kmers
+# STEP 4 : Get SSK-kmers
 #################################################
 
 if [[ ! -e 'step04.msk.done' || $FORCE == 'yes' ]] ; then

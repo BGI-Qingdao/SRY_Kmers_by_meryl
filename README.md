@@ -1,6 +1,6 @@
 # Introduction
 
-    Detect SRY kmers from male and female population data.
+    Detect SSK( sex special kmers) from male and female population data.
 
     notice : this project is still with developing & debugging stage!!!
 
@@ -8,7 +8,7 @@
 
 ```
 Usage   :
-    ./SRY_kmers.sh [options]
+    ./SSK.sh [options]
 
 Option  :
     --male_group    required    folder of male population.
@@ -27,7 +27,7 @@ Option  :
 
 Example :
 
-    ./SRY_kmers.sh --male_group  xxx --female_group yyy \
+    ./SSK.sh --male_group  xxx --female_group yyy \
                    --output ouput --suffix fasta.gz
 
 Author  :
@@ -39,7 +39,7 @@ Author  :
 # Q & A 
 
 ## How to do quality control of msk ?
-![image](https://github.com/BGI-Qingdao/SRY_Kmers_by_meryl/blob/master/sry-kmers-hist.png)
+![image](https://github.com/BGI-Qingdao/SSK_by_meryl/blob/master/sry-kmers-hist.png)
 ```
 # print hostgram first. the kmer-multiplicity refer to the number of suppert male individual .
 ./bin/meryl histogram msk/msk.meryl 
@@ -63,15 +63,15 @@ ln -s msk/msk.gtx.meryl msk/msk.meryl
 ./bin/meryl print msk/msk.meryl 2>log | awk '{print $1}' >msk.txt
 ```
 
-## How to get the distrubution of the numbers of SRY-kmers in assembly result ?
+## How to get the distrubution of the numbers of SSK in assembly result ?
 
 ```
 ./bin/meryl-lookup -sequence genome.fasta -mers msk/msk.meryl -existence -threads 30 >info.txt 
 ```
 
-## How to get the existence details of SRY-kmers in assembly result ?
+## How to get the existence details of SSK in assembly result ?
 
 ```
-# below command will print the "seqName <tab> kmer-startPos <tab> kmer-from-SRY"
+# below command will print the "seqName <tab> kmer-startPos <tab> kmer-from-SSK"
 ./bin/meryl-lookup -sequence genome.fasta -mers msk/msk.meryl -dump -threads 30 2>log | awk '{if($4=="T" )printf("%s\t%s\t%s\n",$1,$3,$5);}'
 ```
