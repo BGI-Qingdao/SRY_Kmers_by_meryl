@@ -1,9 +1,10 @@
 #!/bin/bash
 
-if [[ $# != 4 || $1 == "-h" || $1 == "--help" ]] then
+if [[ $# != 4 || $1 == "-h" || $1 == "--help" ]] ;  then 
     echo "Usage : extract_tgs_reads_by_msk.sh <msk.meryl> <tgs_read> <min_density> <format>"
     echo "      *   format must be fa or fq;"
     echo "      *   gzip file must ended by gz;"
+    exit 
 fi
 
 SRY_MERYL=$1

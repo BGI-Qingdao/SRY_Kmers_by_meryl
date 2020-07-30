@@ -5,24 +5,24 @@
 function usage(){
 echo """
 Brief   :
-detect SSK (sex special kmers) from male and female population data.
+detect SSK (sex-specific-kmers) from male and female population data.
 
 Usage   :
     ./SSY.sh [options]
 
 Option  :
     --male_group    required    folder of male population.
-                                NOTICE : for each individual, put it's fastq into a independant sub-folder.
-                                NOITCE : fastq must be ended by "fastq" or "fastq.gz" or "fq" or "fq.gz"
+                                NOTE : for each individual, put it's fastq into a independant sub-folder.
+                                NOIE : fastq must be ended by "fastq" or "fastq.gz" or "fq" or "fq.gz"
     --female_group  required    folder of female population.
-                                NOTICE : for each individual, put it's fastq into a independant sub-folder.
-                                NOITCE : fastq must be ended by "fastq" or "fastq.gz" or "fq" or "fq.gz".
+                                NOTE : for each individual, put it's fastq into a independant sub-folder.
+                                NOIE : fastq must be ended by "fastq" or "fastq.gz" or "fq" or "fq.gz".
     --suffix        required    suffix of sequence files.
     --kmers         optional    [default 21] kmer-size.
     --thread        optional    [default 16] max threads for meryl.
     --memory        optional    [default 50] max memory for meryl. 
     --output        optional    [default output] output folder name.
-    --mfs           optional    [default 0] the minimum number of individual that support femle kmers .
+    --mfs           optional    [default 0] the minimum number of individuals that support femle kmers .
                                 set this in case when you suspect that there are mixed males in the females.
 
 Example :
