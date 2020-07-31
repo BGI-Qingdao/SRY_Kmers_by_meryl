@@ -4,6 +4,7 @@ if [[ $# != 4 || $1 == "-h" || $1 == "--help" ]] ;  then
     echo "Usage : extract_tgs_reads_by_msk.sh <msk.meryl> <tgs_read> <min_density> <format>"
     echo "      *   format must be fa or fq;"
     echo "      *   gzip file must ended by gz;"
+    echo "      *   format can ne fa/fq"
     exit 
 fi
 
@@ -19,7 +20,7 @@ PATH=$ROOT_PATH"/../bin/:"$PATH
 
 #### classify reads
 meryl-lookup -sequence $READ  -mers $SRY_MERYL -existence -threads $CPU \
-    | awk '{if($4>0)printf("%s %s\n",$1,$2,$4);}' >read_info.txt
+    | awk '{if($4>0)printf("%s %s %s\n",$1,$2,$4);}' >read_info.txt
 
 #### filter read by msk density
 awk -v MIN_DENSITY=$MIN_DENSITY '{if($3/$2 >= MIN_DENSITY) print $1}' read_info.txt >read_name.txt
